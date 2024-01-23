@@ -21,6 +21,5 @@ Outros dados foram:
 Você pode acessar a aplicação criada [aqui](link). 
 
 ### Objetivo 🎯
-Como consultores fomos requisitados por um cliente do segmento de Petróleo e Gás para analisar os dados do preço do petróleo brent.
-A demanda é desenvolver um dashboard por meio do Streamlit para gerar insights relevantes para a tomada de decisão da empresa. Para isso, vamos desenvolver um modelo de Machine Learning a fim de realizar o forecasting (previsão) do preço deste tipo de petróleo.
+Como consultores fomos requisitados por um cliente do segmento de Petróleo e Gás para analisar os dados do preço do petróleo brent. A demanda é desenvolver um dashboard por meio do Streamlit para gerar insights relevantes para a tomada de decisão da empresa. Para isso, vamos desenvolver um modelo de Machine Learning a fim de realizar o forecasting (previsão) do preço deste tipo de petróleo.
  
