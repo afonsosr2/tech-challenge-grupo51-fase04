@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
-from prophet import Prophet
 from prophet.plot import plot_plotly
+# from prophet.serialize import model_from_json
+import pickle
 from plotly import graph_objs as go
 from utils import atualizando_dados_ipea
 
@@ -40,17 +41,18 @@ def main():
 # Previsão com Prophet
 @st.cache_data
 def prophet_prediction(periodo_previsao):
-    df_train = dados[['Data','Preço - petróleo bruto - Brent (FOB)']]
-    df_train = df_train.rename(columns={"Data": "ds", "Preço - petróleo bruto - Brent (FOB)": "y"})
+    # Carregando o modelo
+    m = pickle.load(open('Prophet.pkl', 'rb'))
 
-    m = Prophet()
-    m.fit(df_train)
-    future = m.make_future_dataframe(periods=periodo_previsao)
+    future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m.predict(future)
+    forecast_resumo = forecast[["ds", "yhat"]].rename(columns=
+                                                      {"ds": "Data", 
+                                                       "yhat": "Preço - petróleo bruto - Brent (FOB)"})
 
     # Show and plot forecast
     st.subheader('Previsão')
-    st.write(forecast.tail())
+    st.write(forecast_resumo.tail())
         
     st.write(f'### Gráfico de previsão em {periodo_previsao} dias')
     plot_prev_prophet = plot_plotly(m, forecast)
