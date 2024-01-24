@@ -3,22 +3,21 @@ import pandas as pd
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objs as go
+from utils import atualizando_dados_ipea
 
-
-
-dados = pd.read_csv("dados/ipea.csv")
+dados = pd.read_csv(atualizando_dados_ipea())
 
 # Criando a página do Streamlit
 
 # Página dos modelos de previsão do petróleo Brent
 st.write("# \U0001f6e2\uFE0F Análise de preços do Petróleo Brent")
 
-st.write("### Selecione o modelo desejado para a previsão:")
-input_modelo = st.selectbox("Qual o modelo que deseja utilizar?", ["Modelo_1", "Prophet"])
-
 st.write("### Período da previsão")
 semanas = st.slider('Semanas de previsão:', 1, 52)
 periodo = semanas * 7
+
+st.write("### Modelo de Machine Learning")
+input_modelo = st.selectbox("Selecione o modelo que deseja utilizar:", ["Modelo_1", "Prophet"])
 
 st.subheader('Últimos 5 dias')
 st.write(dados.tail())
