@@ -1,0 +1,4 @@
+Criar o fluxograma do consumos dos dados do IPEA (drawio ou qualquer ferramenta visual)
+Definir onde salvar os dados (.csv, MariaDB?)
+Puxar dados de produção de petroleo bruto (OPEP x NonOPEP)
+Criar streamlit de 3 páginas (Apresentação do Projeto, Dashboard, Resultados do Modelo)

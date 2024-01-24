@@ -9,3 +9,5 @@ joblib>=0.11,<=1.0.1
 bs4
 lxml
 xlrd
+prophet
+plotly
