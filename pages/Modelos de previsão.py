@@ -15,7 +15,7 @@ dados = pd.read_csv(atualizando_dados_ipea())
 @st.cache_data
 def prophet_prediction(periodo_previsao):
     # Carregando o modelo
-    m = pd.read_pickle('modelo/Prophet.pkl')
+    m = pd.read_pickle('modelo/modelo_prophet.pkl')
 
     future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m.predict(future)
