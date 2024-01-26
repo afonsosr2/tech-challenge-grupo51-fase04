@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from prophet import Prophet
 from prophet.plot import plot_plotly
 from prophet.serialize import model_from_json
 from plotly import graph_objs as go
@@ -12,10 +13,15 @@ dados = pd.read_csv(atualizando_dados_ipea())
 # Previsão com Prophet
 @st.cache_data
 def prophet_prediction(periodo_previsao):
-    # Carregando o modelo
-    with open('serialized_model.json', 'r') as fin:
-        m = model_from_json(fin.read())  # Load model
-    # m = pd.read_pickle('modelo/Prophet.pkl')
+    # # Carregando o modelo
+    # with open('serialized_model.json', 'r') as fin:
+    #     m = model_from_json(fin.read())  # Load model
+    # # m = pd.read_pickle('modelo/Prophet.pkl')
+    df_train = dados[['Data','Preço - petróleo bruto - Brent (FOB)']]
+    df_train = df_train.rename(columns={"Data": "ds", "Preço - petróleo bruto - Brent (FOB)": "y"})
+
+    m = Prophet()
+    m.fit(df_train)
 
     future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m.predict(future)
