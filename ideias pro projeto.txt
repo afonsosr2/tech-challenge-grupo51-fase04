@@ -3,5 +3,5 @@ Definir onde salvar os dados (.csv, MariaDB?)
 Puxar dados de produção de petroleo bruto (OPEP x NonOPEP)
 Criar streamlit de 3 páginas (Apresentação do Projeto, Dashboard, Resultados do Modelo)
 Para Resultado de Modelo utilizar:
-- Prophet(melhorar tunagem - será que vale salvar modelo por json?)
+- Prophet(melhorar tunagem - artigo medium)
 - Outro - XGBoost? LinearRegression? Random Forest? MonteCarlo?
