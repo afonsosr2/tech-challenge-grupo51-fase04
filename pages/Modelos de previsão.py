@@ -12,7 +12,6 @@ dados = pd.read_csv(atualizando_dados_ipea())
 ###### Modelos ######
 
 # Previsão com Prophet
-@st.cache_data
 def prophet_prediction(periodo_previsao):
     # # Carregando o modelo
     # with open('serialized_model.json', 'r') as fin:
