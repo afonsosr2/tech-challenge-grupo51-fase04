@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import joblib
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from prophet.serialize import model_from_json
@@ -23,7 +24,7 @@ def prophet_prediction(periodo_previsao):
     # m.fit(df_train)
     # with open("modelo/prophet.pkl", "wb") as f:
     #     pickle.dump(m, f)
-    m1 = pd.read_pickle('./modelo_prophet.pkl')
+    m1 = joblib.load('modelo/prophet.joblib')
 
     future = m1.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m1.predict(future)
