@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pickle
+import joblib
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from prophet.serialize import model_from_json
@@ -15,7 +15,7 @@ dados = pd.read_csv(atualizando_dados_ipea())
 @st.cache_data
 def prophet_prediction(periodo_previsao):
     # Carregando o modelo
-    m = pd.read_pickle('modelo/modelo_prophet.pkl')
+    m = joblib.load('modelo/prophet.joblib')
 
     future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m.predict(future)
