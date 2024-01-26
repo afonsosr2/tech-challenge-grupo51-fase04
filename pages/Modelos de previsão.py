@@ -16,12 +16,7 @@ def prophet_prediction(periodo_previsao):
     # # Carregando o modelo
     # with open('serialized_model.json', 'r') as fin:
     #     m = model_from_json(fin.read())  # Load model
-    # # m = pd.read_pickle('modelo/Prophet.pkl')
-    df_train = dados[['Data','Preço - petróleo bruto - Brent (FOB)']]
-    df_train = df_train.rename(columns={"Data": "ds", "Preço - petróleo bruto - Brent (FOB)": "y"})
-
-    m = Prophet()
-    m.fit(df_train)
+    m = pd.read_pickle('modelo/Prophet.pkl')
 
     future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m.predict(future)
