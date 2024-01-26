@@ -15,6 +15,7 @@ def prophet_prediction(periodo_previsao):
     # Carregando o modelo
     # m = pickle.load(open('modelo/Prophet.pkl', 'rb'))
     m = joblib.load('modelo/prophet.joblib')
+    
 
     future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m.predict(future)
