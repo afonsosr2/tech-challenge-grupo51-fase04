@@ -1,5 +1,4 @@
 import streamlit as st
-import pickle
 import pandas as pd
 from prophet.plot import plot_plotly
 from plotly import graph_objs as go
@@ -13,7 +12,7 @@ dados = pd.read_csv(atualizando_dados_ipea())
 @st.cache_data
 def prophet_prediction(periodo_previsao):
     # Carregando o modelo
-    m = pickle.load(open('modelo/Prophet.pkl', 'rb'))
+    m = pd.read_pickle('modelo/Prophet.pkl')
 
     future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m.predict(future)
