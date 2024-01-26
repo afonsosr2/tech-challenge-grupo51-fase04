@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import joblib
+import pickle
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from prophet.serialize import model_from_json
@@ -14,11 +14,20 @@ dados = pd.read_csv(atualizando_dados_ipea())
 # Previsão com Prophet
 @st.cache_data
 def prophet_prediction(periodo_previsao):
-    # Carregando o modelo
-    m = joblib.load('modelo/prophet.joblib')
+    # # Carregando o modelo
+    # with open('serialized_model.json', 'r') as fin:
+    #     m = model_from_json(fin.read())  # Load model
+    df_train = dados[['Data','Preço - petróleo bruto - Brent (FOB)']]
+    df_train = df_train.rename(columns={"Data": "ds", "Preço - petróleo bruto - Brent (FOB)": "y"})
 
-    future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
-    forecast = m.predict(future)
+    m = Prophet()
+    m.fit(df_train)
+    with open("modelo/dummy.pkl", "wb") as f:
+        pickle.dump(m, f)
+    m1 = pd.read_pickle('modelo/dummy.pkl')
+
+    future = m1.make_future_dataframe(periods=periodo_previsao, freq="B")
+    forecast = m1.predict(future)
     forecast_resumo = forecast[["ds", "yhat"]].rename(columns=
                                                       {"ds": "Data", 
                                                        "yhat": "Preço - petróleo bruto - Brent (FOB)"})
