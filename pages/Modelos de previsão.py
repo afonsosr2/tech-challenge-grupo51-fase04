@@ -15,10 +15,10 @@ dados = pd.read_csv(atualizando_dados_ipea())
 @st.cache_data
 def prophet_prediction(periodo_previsao):
     # Carregando o modelo
-    m1 = pd.read_pickle('modelo/modelo_prophet.pkl')
+    m = pd.read_pickle('modelo/modelo_prophet.pkl')
 
-    future = m1.make_future_dataframe(periods=periodo_previsao, freq="B")
-    forecast = m1.predict(future)
+    future = m.make_future_dataframe(periods=periodo_previsao, freq="B")
+    forecast = m.predict(future)
     forecast_resumo = forecast[["ds", "yhat"]].rename(columns=
                                                       {"ds": "Data", 
                                                        "yhat": "Preço - petróleo bruto - Brent (FOB)"})
