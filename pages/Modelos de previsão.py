@@ -24,7 +24,9 @@ def prophet_prediction(periodo_previsao):
     # m.fit(df_train)
     # with open("modelo/prophet.pkl", "wb") as f:
     #     pickle.dump(m, f)
-    m1 = joblib.load('modelo/prophet.joblib')
+    with open('modelo_prophet.pkl','rb') as f:
+        m1 = pd.read_pickle(f)
+    # m1 = joblib.load('modelo/prophet.joblib')
 
     future = m1.make_future_dataframe(periods=periodo_previsao, freq="B")
     forecast = m1.predict(future)
