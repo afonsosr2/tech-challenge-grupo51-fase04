@@ -20,10 +20,10 @@ def prophet_prediction(periodo_previsao):
     df_train = dados[['Data','Preço - petróleo bruto - Brent (FOB)']]
     df_train = df_train.rename(columns={"Data": "ds", "Preço - petróleo bruto - Brent (FOB)": "y"})
 
-    m = Prophet()
-    m.fit(df_train)
-    with open("modelo/prophet.pkl", "wb") as f:
-        pickle.dump(m, f)
+    # m = Prophet()
+    # m.fit(df_train)
+    # with open("modelo/prophet.pkl", "wb") as f:
+    #     pickle.dump(m, f)
     m1 = pd.read_pickle('modelo/prophet.pkl')
 
     future = m1.make_future_dataframe(periods=periodo_previsao, freq="B")
