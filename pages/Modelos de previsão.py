@@ -48,6 +48,9 @@ with st.sidebar.expander('Modelo de Machine Learning', True):
 #### Página dos modelos de previsão do petróleo Brent ####
 st.write('# :oil_drum: Análise de preços do Petróleo Brent')
 
+st.metric('Data da última atualização dos dados:', dados["Data"].max())
+st.metric('Preço da última atualização dos dados:', dados['Preço - petróleo bruto - Brent (FOB)'].iloc[-1])
+
 st.subheader('Últimos 5 dias')
 st.write(dados.tail())
 
