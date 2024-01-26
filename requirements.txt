@@ -8,3 +8,4 @@ prophet==1.1.5
 bs4==0.0.2
 lxml==5.1.0
 joblib>=0.11,<=1.0.1
+altair==4.2.0
